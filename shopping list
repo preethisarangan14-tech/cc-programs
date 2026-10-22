@@ -1,0 +1,107 @@
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main()
+{
+    vector<string> items;
+    int choice;
+    string item;
+
+    do
+    {
+        cout << "\n--- SHOPPING LIST ---\n";
+        cout << "1. Store an item\n";
+        cout << "2. Add an item\n";
+        cout << "3. Remove an item\n";
+        cout << "4. Search for an item\n";
+        cout << "5. Display all items\n";
+        cout << "6. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+            case 1:
+                cout << "Enter item: ";
+                cin >> item;
+                items.push_back(item);
+                cout << "Item stored successfully!\n";
+                break;
+
+            case 2:
+                cout << "Enter item to add: ";
+                cin >> item;
+                items.push_back(item);
+                cout << "Item added successfully!\n";
+                break;
+
+            case 3:
+                cout << "Enter item to remove: ";
+                cin >> item;
+                {
+                    bool found = false;
+
+                    for (int i = 0; i < items.size(); i++)
+                    {
+                        if (items[i] == item)
+                        {
+                            items.erase(items.begin() + i);
+                            cout << "Item removed successfully!\n";
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                        cout << "Item not found!\n";
+                }
+                break;
+
+            case 4:
+                cout << "Enter item to search: ";
+                cin >> item;
+                {
+                    bool found = false;
+
+                    for (int i = 0; i < items.size(); i++)
+                    {
+                        if (items[i] == item)
+                        {
+                            cout << "Item found in shopping list!\n";
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                        cout << "Item not found!\n";
+                }
+                break;
+
+            case 5:
+                cout << "\nShopping List:\n";
+
+                if (items.empty())
+                    cout << "List is empty!\n";
+                else
+                {
+                    for (int i = 0; i < items.size(); i++)
+                        cout << i + 1 << ". " << items[i] << endl;
+                }
+                break;
+
+            case 6:
+                cout << "Exiting program...\n";
+                break;
+
+            default:
+                cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 6);
+
+    return 0;
+}
