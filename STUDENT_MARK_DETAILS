@@ -1,0 +1,76 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string name;
+    int rollNo;
+    float marks[5], total = 0;
+    float percentage;
+    bool pass = true;
+
+    cout << "===== STUDENT MARKSHEET =====" << endl;
+
+    cout << "Enter Student Name: ";
+    getline(cin, name);
+
+    cout << "Enter Roll Number: ";
+    cin >> rollNo;
+
+    cout << "\nEnter marks for 5 subjects (out of 100):\n";
+
+    for (int i = 0; i < 5; i++) {
+        cout << "Subject " << i + 1 << ": ";
+        cin >> marks[i];
+
+        if (marks[i] < 0 || marks[i] > 100) {
+            cout << "Invalid marks! Enter marks between 0 and 100.\n";
+            return 0;
+        }
+
+        total += marks[i];
+
+        if (marks[i] < 35) {
+            pass = false;
+        }
+    }
+
+    percentage = total / 5;
+
+    cout << "\n========== MARKSHEET ==========\n";
+    cout << "Student Name : " << name << endl;
+    cout << "Roll Number  : " << rollNo << endl;
+
+    for (int i = 0; i < 5; i++) {
+        cout << "Subject " << i + 1 << " Marks: "
+             << marks[i] << "/100" << endl;
+    }
+
+    cout << "Total Marks  : " << total << "/500" << endl;
+    cout << "Percentage   : " << percentage << "%" << endl;
+
+    if (!pass) {
+        cout << "Grade        : F" << endl;
+        cout << "Result       : FAIL" << endl;
+    } else {
+        if (percentage >= 90)
+            cout << "Grade        : A+" << endl;
+        else if (percentage >= 80)
+            cout << "Grade        : A" << endl;
+        else if (percentage >= 70)
+            cout << "Grade        : B" << endl;
+        else if (percentage >= 60)
+            cout << "Grade        : C" << endl;
+        else if (percentage >= 50)
+            cout << "Grade        : D" << endl;
+        else
+            cout << "Grade        : E" << endl;
+
+        cout << "Result       : PASS" << endl;
+    }
+
+    cout << "================================\n";
+
+    return 0;
+}
